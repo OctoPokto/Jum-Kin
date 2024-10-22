@@ -3,15 +3,15 @@ extends CharacterBody2D
 
 const speed = 100.0
 
-var jump_power = -3
+var jump_power = -10000
 var jump_timer_max = 3
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")/2
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _physics_process(delta):
-	move_and_collide(Vector2(0,gravity*delta)) #Gravity applied every frame
+	velocity.y += gravity #Gravity applied every frame
 	floor_check(delta)
 	print(floor_check(delta))
 	handle_movement(delta)
@@ -25,15 +25,16 @@ func handle_jump(delta):
 		#null
 	if Input.is_action_just_released("ui_accept"):
 		#Apply force in direction
-		#velocity.y = jump_power * delta
-		move_and_collide(Vector2(0, jump_power*delta))
+		velocity.y = jump_power
+		
 		print("You jumped!")
+		
 func handle_movement(delta):
 	velocity = Vector2.ZERO
 	if Input.is_action_pressed("ui_left"):
-		velocity.x -= 1
+		velocity.x -= 1 * speed
 	if Input.is_action_pressed("ui_right"):
-		velocity.x += 1
+		velocity.x += 1 * speed
 		
 	if velocity.length() >0:
 		velocity = velocity.normalized() * speed
