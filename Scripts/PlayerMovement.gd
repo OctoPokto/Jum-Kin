@@ -9,15 +9,14 @@ var jump_timer_max = 3
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-
 func _physics_process(delta):
-	velocity.y += gravity #Gravity applied every frame
+	move_and_collide(Vector2(0,gravity*delta)) #Gravity applied every frame
+	#velocity.y += gravity #something is funky here. m&c works fine, but this suddenly doesn't work
 	floor_check(delta)
 	print(floor_check(delta))
 	handle_movement(delta)
 	handle_jump(delta)
 	
-
 func handle_jump(delta):
 	#if Input.is_action_pressed("ui_accept"):
 		##The longer button is held the more force is applied to the jump
@@ -41,12 +40,15 @@ func handle_movement(delta):
 	
 	move_and_collide(velocity * delta)
 func floor_check(delta):
-	var floor_check = move_and_collide(velocity*delta)
-	if floor_check:
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(Vector2(0,0), Vector2(0,0.1))
+	query.exclude=[self]
+	var result = space_state.intersect_ray(query)
+	#var floor_check = move_and_collide(velocity*delta)
+	if query:
 		return true
 	else:
 		return false
-
 
 func _on_input_event(viewport, event, shape_idx):
 	pass
