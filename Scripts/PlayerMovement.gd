@@ -14,7 +14,7 @@ var angle
 var jump_timer = 0.5
 var jump_timer_max = 2
 var jump_toggle : bool
-
+var v
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")*1.5
 
@@ -39,18 +39,7 @@ func _physics_process(delta): #Delta is the time between physics ticks. Currentl
 	if not is_on_floor():
 		animated_sprite_2d.play("idle") #Replace this with jumping anim
 		collide_on_wall()
-	
-	#My attempt at fixing collisions
-	#var collision_info = move_and_collide(velocity*delta)
-	#if velocity == Vector2.ZERO:
-		#var collision: KinematicCollision2D = move_and_collide(velocity * delta)
-		#if collision:
-			#velocity = velocity.bounce(collision.get_normal())
-		
-		#if collision_info:
-			#velocity = velocity.bounce(collision_info.get_normal())
-		#print("wall velocity:",velocity.x)
-	
+			
 	move_and_slide()
 
 func _handle_jump(input_direction, delta):
@@ -91,7 +80,6 @@ func _handle_look_direction(input_direction):
 		animated_sprite_2d.set_frame(angle)
 		
 func collide_on_wall():
-	var v
 	if velocity.x !=0:
 		v = velocity.x
 	if is_on_wall() and velocity.x == 0:
