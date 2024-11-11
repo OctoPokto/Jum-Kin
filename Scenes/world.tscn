@@ -257,7 +257,6 @@ sources/0 = SubResource("TileSetAtlasSource_3ul28")
 script = ExtResource("1_ilh0v")
 
 [node name="Player" parent="." instance=ExtResource("2_oshdv")]
-collision_mask = 3
 
 [node name="Interactive" type="TileMapLayer" parent="."]
 use_parent_material = true

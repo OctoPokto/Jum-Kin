@@ -1,9 +1,8 @@
-[gd_scene load_steps=20 format=4 uid="uid://d06t73m8qojh6"]
+[gd_scene load_steps=16 format=4 uid="uid://d06t73m8qojh6"]
 
 [ext_resource type="Texture2D" uid="uid://lm0ipyugcvpk" path="res://Sprites/Spritesheet_Jum_look.png" id="1_n2crw"]
-[ext_resource type="Script" path="res://Scripts/PlayerMovement.gd" id="2_g3y04"]
+[ext_resource type="Script" path="res://Scripts/PlayerOld.gd" id="2_g3y04"]
 [ext_resource type="Texture2D" uid="uid://c2tyvojin0ijg" path="res://Sprites/Walls.png" id="3_pjwiq"]
-[ext_resource type="Texture2D" uid="uid://bp12rd21qsv62" path="res://Sprites/Spritesheet_Jum_walk.png" id="4_dvof7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_32wth"]
 texture = ExtResource("3_pjwiq")
@@ -179,10 +178,6 @@ sources/0 = SubResource("TileSetAtlasSource_32wth")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t2bli"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b1t8g"]
-atlas = ExtResource("1_n2crw")
-region = Rect2(0, 0, 8, 8)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_vt471"]
 atlas = ExtResource("1_n2crw")
 region = Rect2(0, 0, 8, 8)
@@ -215,24 +210,8 @@ region = Rect2(48, 0, 8, 8)
 atlas = ExtResource("1_n2crw")
 region = Rect2(56, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rk78t"]
-atlas = ExtResource("4_dvof7")
-region = Rect2(0, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jbeaj"]
-atlas = ExtResource("4_dvof7")
-region = Rect2(8, 0, 8, 8)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_7woss"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b1t8g")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vt471")
@@ -261,17 +240,6 @@ animations = [{
 "loop": true,
 "name": &"look",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rk78t")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jbeaj")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
 }]
 
 [node name="Node2D" type="Node2D"]
@@ -292,6 +260,6 @@ shape = SubResource("RectangleShape2D_t2bli")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_7woss")
-animation = &"idle"
+animation = &"look"
 
 [connection signal="input_event" from="CharacterBody2D" to="CharacterBody2D" method="_on_input_event"]
