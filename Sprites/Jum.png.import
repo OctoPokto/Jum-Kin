@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://de5kf6lytvllk"
-path="res://.godot/imported/Platform.png-8d0b29edcb638cb1473d707a16b0aae0.ctex"
+uid="uid://c35adlkgvcly8"
+path="res://.godot/imported/Jum.png-a9225b9a02cc1836ecc6c7e02b0aba7e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Platform.png"
-dest_files=["res://.godot/imported/Platform.png-8d0b29edcb638cb1473d707a16b0aae0.ctex"]
+source_file="res://Sprites/Jum.png"
+dest_files=["res://.godot/imported/Jum.png-a9225b9a02cc1836ecc6c7e02b0aba7e.ctex"]
 
 [params]
 

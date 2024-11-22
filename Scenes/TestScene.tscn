@@ -294,4 +294,10 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_7woss")
 animation = &"idle"
 
+[node name="TextEdit" type="RichTextLabel" parent="."]
+offset_left = -150.0
+offset_top = 28.0
+offset_right = 106.0
+offset_bottom = 55.0
+
 [connection signal="input_event" from="CharacterBody2D" to="CharacterBody2D" method="_on_input_event"]
