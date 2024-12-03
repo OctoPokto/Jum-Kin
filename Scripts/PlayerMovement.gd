@@ -20,20 +20,20 @@ var input_axis = Input.get_axis("ui_left", "ui_right")
 var input_direction = Input.get_vector("A_left","D_right","W_up","S_down")
 
 var prior_input : Array[Vector2]
-
+var input_dictionary : Dictionary
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")*2
 
 var height_reached
 
 func _physics_process(delta): #Delta is the time between physics ticks. Currently set to 1/60
 	velocity.y += gravity * delta
-	#print(angle)
 	handle_animations()
+	
 	if is_on_floor():
 		_handle_jump(input_direction, delta)
 		_handle_acceleration(input_axis, delta)
 		apply_friction(input_axis, delta)
-		save_input()
+		hold_input()
 		if velocity.x == 0 && input_direction != Vector2.ZERO: #When player is still and is using arrow keys.
 			_handle_look_direction(input_direction)
 			#print (input_direction)
@@ -137,17 +137,18 @@ func update_trajectory(dir:Vector2, speed:float, delta):
 		vel.y += gravity * delta
 		pos += vel * delta
 		
-func save_input():
-	var input_direction_raw = Input.get_vector("A_left","D_right","W_up","S_down")
-	if !prior_input:
+func hold_input(): #I have little clue where i'm going with this
+	# The idea is to filter the input and spit out the input witht he most amount in the array or dictionary. Unsure what to use.
+	if !prior_input: #This is to fill the array, but I'm testing dictionaries so it has no function right now
 		prior_input.resize(5)
 		prior_input.fill(Vector2.ZERO)
 		print("Input array primed")
+	var input_direction_raw = Input.get_vector("A_left","D_right","W_up","S_down")
+	var ocurrence :int
+	for i in range(input_dictionary.size()):# yeah, the content of this loop doesn't make sense
+		if input_dictionary.keys()[i].key == input_direction_raw:
+			input_dictionary.keys()[i].value +=1
+		else:
+			input_dictionary = {input_direction_raw : ocurrence}
 
-	# record every input and if most of them are the same then do that input
-	# I need a dictionary, not an array
-	# I don't remember how to use dictionaries
-	for i in range(prior_input.size()):
-		prior_input[i] = input_direction_raw
-		
 	
