@@ -169,8 +169,12 @@ script = ExtResource("1_1ufyp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kookx")
-animation = &"jump"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_mb4t1")
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 1.0
+default_color = Color(0.741385, 0.741385, 0.741385, 1)
