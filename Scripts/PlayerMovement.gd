@@ -19,28 +19,33 @@ var velocity_before_bounce = 0
 var input_axis = Input.get_axis("ui_left", "ui_right")
 var input_direction = Input.get_vector("A_left","D_right","W_up","S_down")
 
-var prior_input : Array[Vector2]
-var input_dictionary : Dictionary
+var prior_input : Array = [.0,.0,.0,.0] #left right up down
+var time_passed : float = 0.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")*2
 
 var height_reached
 
 func _physics_process(delta): #Delta is the time between physics ticks. Currently set to 1/60
+	time_passed += delta
 	velocity.y += gravity * delta
+	
 	handle_animations()
+	
+	time_input_held()
+	handle_prior_input(input_direction)
+	update_input_direction()
 	
 	if is_on_floor():
 		_handle_jump(input_direction, delta)
 		_handle_acceleration(input_axis, delta)
 		apply_friction(input_axis, delta)
-		hold_input()
+		
 		if velocity.x == 0 && input_direction != Vector2.ZERO: #When player is still and is using arrow keys.
 			_handle_look_direction(input_direction)
 			#print (input_direction)
 	elif !is_on_floor():
 		collide_on_wall()
 	input_axis = Input.get_axis("ui_left", "ui_right")
-
 	move_and_slide()
 	
 
@@ -137,18 +142,49 @@ func update_trajectory(dir:Vector2, speed:float, delta):
 		vel.y += gravity * delta
 		pos += vel * delta
 		
-func hold_input(): #I have little clue where i'm going with this
-	# The idea is to filter the input and spit out the input witht he most amount in the array or dictionary. Unsure what to use.
-	if !prior_input: #This is to fill the array, but I'm testing dictionaries so it has no function right now
-		prior_input.resize(5)
-		prior_input.fill(Vector2.ZERO)
-		print("Input array primed")
-	var input_direction_raw = Input.get_vector("A_left","D_right","W_up","S_down")
-	var ocurrence :int
-	for i in range(input_dictionary.size()):# yeah, the content of this loop doesn't make sense
-		if input_dictionary.keys()[i].key == input_direction_raw:
-			input_dictionary.keys()[i].value +=1
-		else:
-			input_dictionary = {input_direction_raw : ocurrence}
+func time_input_held(): 
+	if Input.is_action_just_pressed("A_left"):
+		prior_input[0] = time_passed
+	if Input.is_action_just_pressed("D_right"):
+		prior_input[1] = time_passed
+	if Input.is_action_just_pressed("W_up"):
+		prior_input[2] = time_passed
+	if Input.is_action_just_pressed("S_down"):
+		prior_input[3] = time_passed
 
-	
+func handle_prior_input(check_key):
+	var delay :float = 0.3
+	match check_key:
+		"left":
+			if (prior_input[0]+delay > time_passed) and prior_input[0] > prior_input[1]:
+				return true
+			else : return false
+		"right":
+			if (prior_input[1]+delay > time_passed) and prior_input[1] > prior_input[0]:
+				return true
+			else : return false
+		"up":
+			if (prior_input[2]+delay > time_passed) and prior_input[2] > prior_input[3]:
+				return true
+			else : return false
+		"down":
+			if (prior_input[3]+delay > time_passed) and prior_input[3] > prior_input[2]:
+				return true
+			else : return false
+
+func update_input_direction():
+	# I want input direction to zero when switching keys
+	# currently the input is correct in a few frames and then it gets zeroed. Not ideal
+	input_direction = Vector2.ZERO
+		
+	if handle_prior_input("left"):
+		input_direction.x = -1
+	if handle_prior_input("right"):
+		input_direction.x = 1
+	if handle_prior_input("up"):
+		input_direction.y = -1
+	if handle_prior_input("down"):
+		input_direction.y = 1
+	if input_direction.length() != 0:
+		input_direction = input_direction.normalized()
+	print(input_direction, "input direction")
