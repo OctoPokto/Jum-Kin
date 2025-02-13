@@ -143,13 +143,13 @@ func update_trajectory(dir:Vector2, speed:float, delta):
 		pos += vel * delta
 		
 func time_input_held(): 
-	if Input.is_action_just_pressed("A_left"):
+	if Input.is_action_pressed("A_left"):
 		prior_input[0] = time_passed
-	if Input.is_action_just_pressed("D_right"):
+	if Input.is_action_pressed("D_right"):
 		prior_input[1] = time_passed
-	if Input.is_action_just_pressed("W_up"):
+	if Input.is_action_pressed("W_up"):
 		prior_input[2] = time_passed
-	if Input.is_action_just_pressed("S_down"):
+	if Input.is_action_pressed("S_down"):
 		prior_input[3] = time_passed
 
 func handle_prior_input(check_key):
@@ -158,7 +158,8 @@ func handle_prior_input(check_key):
 		"left":
 			if (prior_input[0]+delay > time_passed) and prior_input[0] > prior_input[1]:
 				return true
-			else : return false
+			else:
+				return false
 		"right":
 			if (prior_input[1]+delay > time_passed) and prior_input[1] > prior_input[0]:
 				return true
@@ -173,10 +174,8 @@ func handle_prior_input(check_key):
 			else : return false
 
 func update_input_direction():
-	# I want input direction to zero when switching keys
-	# currently the input is correct in a few frames and then it gets zeroed. Not ideal
 	input_direction = Vector2.ZERO
-		
+	
 	if handle_prior_input("left"):
 		input_direction.x = -1
 	if handle_prior_input("right"):

@@ -30,6 +30,12 @@ window/stretch/scale_mode="integer"
 
 project/assembly_name="Jum Kin"
 
+[gui]
+
+theme/custom_font="res://Fonts/Jacquard12-128px.ttf"
+theme/default_font_antialiasing=0
+theme/default_font_multichannel_signed_distance_field=true
+
 [input]
 
 ui_left={
@@ -88,3 +94,5 @@ S_down={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
