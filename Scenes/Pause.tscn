@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://c2kuiq6oxgcye"]
 
-[ext_resource type="FontFile" uid="uid://i60e2658iwjn" path="res://Fonts/Jacquard12-128px.ttf" id="1_6d164"]
-[ext_resource type="Theme" uid="uid://ca6mibp1du74h" path="res://text_theme.tres" id="1_tlo2e"]
-[ext_resource type="FontFile" uid="uid://lxlg2m66o0sd" path="res://Fonts/Jacquard12-64px.ttf" id="2_5a54s"]
+[ext_resource type="Theme" uid="uid://ca6mibp1du74h" path="res://text_theme.tres" id="1_0jcpa"]
+[ext_resource type="FontFile" uid="uid://i60e2658iwjn" path="res://Fonts/Jacquard12-128px.ttf" id="2_et8xk"]
+[ext_resource type="FontFile" uid="uid://lxlg2m66o0sd" path="res://Fonts/Jacquard12-64px.ttf" id="3_jfuok"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m733q"]
-bg_color = Color(0.771684, 0.771684, 0.771684, 1)
+bg_color = Color(0.166374, 0.166374, 0.166374, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 5
@@ -13,16 +13,14 @@ border_width_bottom = 8
 border_color = Color(0.226707, 0.226708, 0.226707, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4cn3m"]
-font = ExtResource("1_6d164")
+font = ExtResource("2_et8xk")
 font_size = 128
-font_color = Color(0.0992318, 0.0992318, 0.0992318, 1)
 shadow_size = 0
 shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ywidp"]
-font = ExtResource("2_5a54s")
+font = ExtResource("3_jfuok")
 font_size = 32
-font_color = Color(0.0992318, 0.0992318, 0.0992318, 1)
 shadow_size = 0
 shadow_offset = Vector2(0, 0)
 
@@ -34,6 +32,7 @@ anchor_right = 0.8
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_0jcpa")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -68,14 +67,13 @@ size_flags_vertical = 0
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("1_tlo2e")
+theme = ExtResource("1_0jcpa")
 text = "Pause"
 label_settings = SubResource("LabelSettings_4cn3m")
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("1_tlo2e")
-text = "Button"
+theme = ExtResource("1_0jcpa")
 flat = true
 
 [node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Button"]
