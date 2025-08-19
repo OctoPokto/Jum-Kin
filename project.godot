@@ -13,7 +13,7 @@ config_version=5
 config/name="Jum Kin"
 config/description="Jum is Jumming their way through challenging obstacles to find their Kin."
 run/main_scene="res://Scenes/world.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0.0156863, 0.0156863, 0.0156863, 1)
 config/icon="res://Sprites/icon.svg"
 
