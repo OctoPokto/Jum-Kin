@@ -186,4 +186,4 @@ func update_input_direction():
 		input_direction.y = 1
 	if input_direction.length() != 0:
 		input_direction = input_direction.normalized()
-	print(input_direction, "input direction")
+	#print(input_direction, "input direction")
