@@ -3,6 +3,8 @@ extends Control
 @onready var content = get_node("Content")
 @onready var typing_timer = get_node("TypingTimer") as Timer
 
+var target
+
 func _ready() -> void:
 	await get_tree().create_timer(2.0).timeout
 	typing_timer.timeout.connect(_on_TypingTimer_timeout)

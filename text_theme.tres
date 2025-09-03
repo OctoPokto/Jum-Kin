@@ -8,6 +8,6 @@
 resource_name = "TextTheme"
 default_font = ExtResource("1_xuino")
 default_font_size = 32
-color/colors/font_color = Color(0, 0, 0, 1)
+color/colors/font_color = Color(0.767445, 0.663516, 0.658158, 1)
 script = SubResource("GDScript_dowcj")
 metadata/text_colour = Color(0.727986, 0.727986, 0.727986, 1)

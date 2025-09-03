@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2kuiq6oxgcye"]
+[gd_scene load_steps=5 format=3 uid="uid://c2kuiq6oxgcye"]
 
 [ext_resource type="Theme" uid="uid://ca6mibp1du74h" path="res://text_theme.tres" id="1_0jcpa"]
-[ext_resource type="FontFile" uid="uid://i60e2658iwjn" path="res://Fonts/Jacquard12-128px.ttf" id="2_et8xk"]
 [ext_resource type="FontFile" uid="uid://lxlg2m66o0sd" path="res://Fonts/Jacquard12-64px.ttf" id="3_jfuok"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m733q"]
@@ -11,12 +10,6 @@ border_width_top = 2
 border_width_right = 5
 border_width_bottom = 8
 border_color = Color(0.226707, 0.226708, 0.226707, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_4cn3m"]
-font = ExtResource("2_et8xk")
-font_size = 128
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ywidp"]
 font = ExtResource("3_jfuok")
@@ -61,17 +54,30 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="Pause" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme = ExtResource("1_0jcpa")
 text = "_ause"
-label_settings = SubResource("LabelSettings_4cn3m")
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_0jcpa")
+text = "_ause"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
 
 [node name="Proceed" type="Label" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Will ye _roceed?"
 label_settings = SubResource("LabelSettings_ywidp")
