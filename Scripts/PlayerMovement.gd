@@ -25,6 +25,18 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")*2
 
 var height_reached
 
+signal follower_count_changed(count: int)
+
+@onready var recorder = $MovementRecorder
+var followers := []
+
+func add_follower(f) -> void:
+	followers.append(f)
+	emit_signal("follower_count_changed", followers.size())
+
+func get_follower_count() -> int:
+	return followers.size()
+
 func _physics_process(delta): #Delta is the time between physics ticks. Currently set to 1/60
 	time_passed += delta
 	velocity.y += gravity * delta
@@ -47,6 +59,14 @@ func _physics_process(delta): #Delta is the time between physics ticks. Currentl
 		collide_on_wall()
 	input_axis = Input.get_axis("ui_left", "ui_right")
 	move_and_slide()
+	
+	if is_instance_valid(recorder):
+		recorder.push_sample(
+			global_position,
+			animated_sprite_2d.flip_h,
+			animated_sprite_2d.animation,
+			animated_sprite_2d.get_frame()
+		)
 	
 
 func _handle_jump(input_direction, delta):

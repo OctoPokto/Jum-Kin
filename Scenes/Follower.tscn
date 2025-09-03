@@ -1,86 +1,85 @@
-[gd_scene load_steps=25 format=3 uid="uid://sd0c2wahutxb"]
+[gd_scene load_steps=23 format=3 uid="uid://1f1gdbjavs7m"]
 
-[ext_resource type="Script" uid="uid://gxpdcjnyvg3l" path="res://Scripts/PlayerMovement.gd" id="1_1ufyp"]
-[ext_resource type="Texture2D" uid="uid://c35adlkgvcly8" path="res://Sprites/Jum.png" id="2_3um1c"]
-[ext_resource type="Script" uid="uid://b6mystbpd3hix" path="res://Scripts/MovementRecorder.gd" id="3_gntrk"]
+[ext_resource type="Script" uid="uid://cc8qn4h84465q" path="res://Scripts/FollowerGhost.gd" id="1_apf7o"]
+[ext_resource type="Texture2D" uid="uid://c35adlkgvcly8" path="res://Sprites/Jum.png" id="2_0mpoj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ak4wq"]
-atlas = ExtResource("2_3um1c")
+atlas = ExtResource("2_0mpoj")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xwkgl"]
-atlas = ExtResource("2_3um1c")
+atlas = ExtResource("2_0mpoj")
 region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6s6eh"]
-atlas = ExtResource("2_3um1c")
+atlas = ExtResource("2_0mpoj")
 region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_blvhp"]
-atlas = ExtResource("2_3um1c")
+atlas = ExtResource("2_0mpoj")
 region = Rect2(96, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c2hwx"]
-atlas = ExtResource("2_3um1c")
+atlas = ExtResource("2_0mpoj")
 region = Rect2(112, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bknin"]
-atlas = ExtResource("2_3um1c")
+atlas = ExtResource("2_0mpoj")
 region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yw723"]
-atlas = ExtResource("2_3um1c")
+atlas = ExtResource("2_0mpoj")
 region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hmktx"]
-atlas = ExtResource("2_3um1c")
+atlas = ExtResource("2_0mpoj")
 region = Rect2(32, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4l2y2"]
-atlas = ExtResource("2_3um1c")
+atlas = ExtResource("2_0mpoj")
 region = Rect2(48, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h0v02"]
-atlas = ExtResource("2_3um1c")
+atlas = ExtResource("2_0mpoj")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ahlvh"]
-atlas = ExtResource("2_3um1c")
+atlas = ExtResource("2_0mpoj")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xkp3w"]
-atlas = ExtResource("2_3um1c")
+atlas = ExtResource("2_0mpoj")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qlrjl"]
-atlas = ExtResource("2_3um1c")
+atlas = ExtResource("2_0mpoj")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xdfus"]
-atlas = ExtResource("2_3um1c")
+atlas = ExtResource("2_0mpoj")
 region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g3skl"]
-atlas = ExtResource("2_3um1c")
+atlas = ExtResource("2_0mpoj")
 region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bpods"]
-atlas = ExtResource("2_3um1c")
+atlas = ExtResource("2_0mpoj")
 region = Rect2(96, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d8ip2"]
-atlas = ExtResource("2_3um1c")
+atlas = ExtResource("2_0mpoj")
 region = Rect2(112, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qxtl5"]
-atlas = ExtResource("2_3um1c")
+atlas = ExtResource("2_0mpoj")
 region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2q1wx"]
-atlas = ExtResource("2_3um1c")
+atlas = ExtResource("2_0mpoj")
 region = Rect2(16, 32, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_kookx"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_sh20g"]
 animations = [{
 "frames": [{
 "duration": 5.0,
@@ -160,25 +159,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mb4t1"]
-size = Vector2(12, 14)
-
-[node name="Player" type="CharacterBody2D"]
-collision_mask = 3
-floor_constant_speed = true
-script = ExtResource("1_1ufyp")
+[node name="Follower" type="Node2D"]
+script = ExtResource("1_apf7o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_kookx")
+sprite_frames = SubResource("SpriteFrames_sh20g")
 animation = &"idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_mb4t1")
-
-[node name="Line2D" type="Line2D" parent="."]
-width = 1.0
-default_color = Color(0.741385, 0.741385, 0.741385, 1)
-
-[node name="MovementRecorder" type="Node" parent="."]
-script = ExtResource("3_gntrk")
