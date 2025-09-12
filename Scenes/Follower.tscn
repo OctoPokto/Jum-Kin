@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://1f1gdbjavs7m"]
 
-[ext_resource type="Script" uid="uid://cc8qn4h84465q" path="res://Scripts/FollowerGhost.gd" id="1_apf7o"]
+[ext_resource type="Script" uid="uid://bfcssrhdoep00" path="res://Scripts/FollowerGhost.gd" id="1_apf7o"]
 [ext_resource type="Texture2D" uid="uid://c35adlkgvcly8" path="res://Sprites/Jum.png" id="2_0mpoj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ak4wq"]
@@ -161,6 +161,7 @@ animations = [{
 
 [node name="Follower" type="Node2D"]
 script = ExtResource("1_apf7o")
+feet_to_origin = 8.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_sh20g")

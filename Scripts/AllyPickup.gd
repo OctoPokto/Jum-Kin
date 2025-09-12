@@ -5,6 +5,8 @@ class_name AllyPickup
 @export var delay_frames_base: int = 12
 @export var delay_frames_step: int = 8
 
+@export var info: FollowerInfo
+
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
@@ -14,7 +16,6 @@ func _on_body_entered(body: Node) -> void:
 
 	var follower = follower_scene.instantiate()
 	follower.global_position = global_position
-
 	var idx: int = 0
 	if body.has_method("get_follower_count"):
 		idx = int(body.call("get_follower_count"))
@@ -28,6 +29,13 @@ func _on_body_entered(body: Node) -> void:
 	# Stagger delay so they form a train
 	if "delay_frames" in follower:
 		follower.delay_frames = delay_frames_base + idx * delay_frames_step
+
+	if info != null:
+		if follower.has_method("set_tint"):
+			follower.set_tint(info.color)
+		elif follower.has_node("AnimatedSprite2D"):
+			# fallback if not set_tint()
+			follower.get_node("AnimatedSprite2D").self_modulate = info.color
 
 	get_tree().current_scene.add_child(follower)
 	body.call("add_follower", follower)

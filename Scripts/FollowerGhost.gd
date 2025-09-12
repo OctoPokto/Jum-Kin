@@ -24,6 +24,7 @@ class_name FollowerGhost
 @export var floor_normal_thresh: float = 0.5
 @export var max_y_rise_per_frame: float = 18.0
 
+@export var tint: Color = Color.WHITE
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 var recorder: Node = null
 
@@ -40,6 +41,11 @@ var _lock_right_x: float = 0.0
 var _lock_feet_y: float = 0.0
 var _has_lock: bool = false
 
+func set_tint(c: Color) -> void:
+	tint = c
+	if is_instance_valid(sprite):
+		sprite.self_modulate = tint
+
 func set_recorder(r: Node) -> void:
 	recorder = r
 
@@ -50,6 +56,8 @@ func _ready() -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = int(get_instance_id()) ^ 0x9E3779B9
 	_jitter_x = rng.randf_range(-spread_x, spread_x)
+	if is_instance_valid(sprite):
+		sprite.self_modulate = tint
 
 func _physics_process(delta: float) -> void:
 	if recorder == null or not recorder.has_method("get_snapshot"):
