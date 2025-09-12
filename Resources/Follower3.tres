@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="FollowerInfo" load_steps=2 format=3 uid="uid://1k5udvn41xdi"]
+
+[ext_resource type="Script" uid="uid://f2chjlerhve4" path="res://Resources/followerInfo.gd" id="1_wpr1i"]
+
+[resource]
+script = ExtResource("1_wpr1i")
+characterName = ""
+colour = Color(1, 0.803922, 0.458824, 1)
+dialogue = PackedStringArray("Why is everythin_ grey?", "Why are we jum_in_?", "Why can\'t i say _ or _?", "I am so confused, who am I?")
+dialogueSuccess = PackedStringArray("I guess we did somethin_?", "I ho_e we will find the why", "Are you certain this is the ri_ht way?")
+dialogueFalling = PackedStringArray("Is this death?", "What\'s the _oint?", "I think I _et it now. FALL.")
+metadata/_custom_type_script = "uid://f2chjlerhve4"
