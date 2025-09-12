@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_koafj")
 characterName = "Grangle"
-colour = Color(0.694118, 0.243137, 0.32549, 1)
+color = Color(0.694118, 0.243137, 0.32549, 1)
 dialogue = PackedStringArray("Would be a shame if we fell", "I ho_e there aren\'t any birds here", "I don\'t like hei_hts")
 dialogueSuccess = PackedStringArray("Wow, we actually made it", "I still don\'t like hei_hts", "Finally stable _round")
 dialogueFalling = PackedStringArray("Let\'s just stay here", "Do we really need to reach the top?", "Every bone in my body is broken")

@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_0drt5")
 characterName = "Belle"
-colour = Color(0.937255, 0.490196, 0.341176, 1)
+color = Color(0.937255, 0.490196, 0.341176, 1)
 dialogue = PackedStringArray("Did you know you can jum_ horizontally?", "Holding the s_ace bar char_es your jum_", "WASD chooses jum_ direction", "Arrow keys is used to walk")
 dialogueSuccess = PackedStringArray("You really are the Jum_ Kin_!", "Look at that _erfect _arabolic arc!", "You did it!")
 dialogueFalling = PackedStringArray("Fallin_ isn\'t failure unless you remain fallen", "Flyin_ is just fallin_ without hittin_ the _round", "Better luck next time!")
