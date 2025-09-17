@@ -22,7 +22,7 @@ func update_message(message: String, target: Vector2)-> void:
 	content.text = message
 	
 	position = (local_pos + Vector2(0,50))
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(0.5).timeout
 	content.visible_characters = 0
 	visible = true
 	typing_timer.start()
