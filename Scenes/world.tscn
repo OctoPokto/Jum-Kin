@@ -1,12 +1,15 @@
-[gd_scene load_steps=12 format=4 uid="uid://bh7nekua4p7v3"]
+[gd_scene load_steps=15 format=4 uid="uid://bh7nekua4p7v3"]
 
 [ext_resource type="PackedScene" uid="uid://sd0c2wahutxb" path="res://Scenes/Player.tscn" id="2_oshdv"]
 [ext_resource type="Texture2D" uid="uid://c2tyvojin0ijg" path="res://Sprites/Walls.png" id="3_mnjr6"]
 [ext_resource type="Texture2D" uid="uid://w1ge27s7cavf" path="res://Sprites/AccentTiles.png" id="4_4rkq8"]
 [ext_resource type="Texture2D" uid="uid://dtfns7yrcikjj" path="res://Sprites/icon.svg" id="4_fo5ed"]
+[ext_resource type="PackedScene" uid="uid://xo47hjsjwgr1" path="res://Scenes/KinPickup.tscn" id="6_o06y3"]
 [ext_resource type="Script" uid="uid://13wp8p82hy57" path="res://Scripts/CamProgression.gd" id="6_peb7k"]
+[ext_resource type="PackedScene" uid="uid://1f1gdbjavs7m" path="res://Scenes/Follower.tscn" id="7_k7acu"]
+[ext_resource type="Resource" uid="uid://rh48437ts2tb" path="res://Resources/Follower2.tres" id="8_k7acu"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ymc1a"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k7acu"]
 texture = ExtResource("3_mnjr6")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -330,7 +333,7 @@ terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Walls"
 terrain_set_0/terrain_0/color = Color(0.384314, 0.87451, 0.623529, 1)
 navigation_layer_0/layers = 1
-sources/3 = SubResource("TileSetAtlasSource_ymc1a")
+sources/3 = SubResource("TileSetAtlasSource_k7acu")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4r4i3"]
 texture = ExtResource("4_4rkq8")
@@ -372,7 +375,7 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_4r4i3")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ukr8"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5v1tr"]
 texture = ExtResource("4_fo5ed")
 0:0/0 = 0
 1:0/0 = 0
@@ -441,7 +444,7 @@ texture = ExtResource("4_fo5ed")
 
 [sub_resource type="TileSet" id="TileSet_o06y3"]
 tile_size = Vector2i(640, 480)
-sources/1 = SubResource("TileSetAtlasSource_5ukr8")
+sources/1 = SubResource("TileSetAtlasSource_5v1tr")
 
 [node name="World" type="Node2D"]
 
@@ -473,3 +476,8 @@ position = Vector2(0, 16)
 position = Vector2(0, 16)
 remote_path = NodePath("../Camera2D")
 script = ExtResource("6_peb7k")
+
+[node name="KinPickup" parent="." instance=ExtResource("6_o06y3")]
+position = Vector2(76, 205)
+follower_scene = ExtResource("7_k7acu")
+info = ExtResource("8_k7acu")

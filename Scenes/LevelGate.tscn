@@ -1,19 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbveg8ko3gmlt"]
+[gd_scene load_steps=4 format=3 uid="uid://d3qftw0g88q3n"]
 
-[ext_resource type="Script" uid="uid://1x4jso6ulivp" path="res://Scripts/LevelGate.gd" id="1_entku"]
+[ext_resource type="Script" path="res://Scripts/LevelGate.gd" id="1_entku"]
 [ext_resource type="Texture2D" uid="uid://3luampje32y1" path="res://Sprites/JumKin_Door.png" id="2_ty6cp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p2s6p"]
-size = Vector2(160, 160)
+size = Vector2(128, 128)
 
 [node name="LevelGate" type="Area2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_entku")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
 texture = ExtResource("2_ty6cp")
-offset = Vector2(0, -80)
+offset = Vector2(0, -32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -80)
+position = Vector2(0, -64)
 shape = SubResource("RectangleShape2D_p2s6p")
