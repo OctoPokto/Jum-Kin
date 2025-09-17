@@ -43,4 +43,4 @@ func _on_body_entered(body: Node) -> void:
 	
 	var dialogue := get_tree().current_scene.get_node("Control/Dialogue")
 	if dialogue:
-		dialogue.update_message(info.pickupDialogue, global_position)
+		dialogue.update_message(info.pickupDialogue, global_position, info.color)

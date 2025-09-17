@@ -1,6 +1,6 @@
 extends Control
 
-@onready var content = get_node("Content")
+@onready var content = get_node("Content") as RichTextLabel
 @onready var typing_timer = get_node("TypingTimer") as Timer
 
 func _ready() -> void:
@@ -9,7 +9,7 @@ func _ready() -> void:
 	typing_timer.timeout.connect(_on_TypingTimer_timeout)
 	#update_message("Oh it's recording now? What do you want me to say?", target)
 	
-func update_message(message: String, target: Vector2)-> void:
+func update_message(message: String, target: Vector2, color: Color)-> void:
 	
 	print("Entered update message")
 	var parent_ci := get_parent() as CanvasItem
@@ -20,6 +20,7 @@ func update_message(message: String, target: Vector2)-> void:
 		print(local_pos)
 		
 	content.text = message
+	content.add_theme_color_override("default_col", color)
 	
 	position = (local_pos + Vector2(0,50))
 	await get_tree().create_timer(0.5).timeout
