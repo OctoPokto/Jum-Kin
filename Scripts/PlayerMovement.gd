@@ -26,9 +26,38 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")*2
 var height_reached
 
 signal follower_count_changed(count: int)
-
 @onready var recorder = $MovementRecorder
 var followers := []
+
+signal landed_up_screen
+signal landed_down_screen
+var _was_on_floor: bool = false
+var _last_landed_screen: Vector2i = Vector2i.ZERO
+@export var cam_node: NodePath
+var _cam: Node = null
+
+func _ready():
+	landed_up_screen.connect(_on_test_up)
+	landed_down_screen.connect(_on_test_down)
+	_was_on_floor = is_on_floor()
+	_cam = get_node_or_null(cam_node)
+	if _cam and _cam.has_method("_getCurrentScreen"):
+		var cs: Variant = _cam.call("_getCurrentScreen")
+		var v: Vector2 = cs
+		_last_landed_screen = Vector2i(int(round(v.x)), int(round(v.y)))
+
+func _on_test_up() -> void:
+	var scr := ""
+	if _cam and _cam.has_method("_getCurrentScreen"):
+		scr = str(_cam.call("_getCurrentScreen"))
+	print("[TEST] landed_up_screen  screen=", scr)
+
+func _on_test_down() -> void:
+	var scr := ""
+	if _cam and _cam.has_method("_getCurrentScreen"):
+		scr = str(_cam.call("_getCurrentScreen"))
+	print("[TEST] landed_down_screen  screen=", scr)
+
 
 func add_follower(f) -> void:
 	followers.append(f)
@@ -59,6 +88,23 @@ func _physics_process(delta): #Delta is the time between physics ticks. Currentl
 		collide_on_wall()
 	input_axis = Input.get_axis("ui_left", "ui_right")
 	move_and_slide()
+	
+	var now_on_floor: bool = is_on_floor()
+	if now_on_floor and not _was_on_floor:
+		var cur: Vector2i = _last_landed_screen
+		if _cam and _cam.has_method("_getCurrentScreen"):
+			var cs2: Variant = _cam.call("_getCurrentScreen")
+			var v2: Vector2 = cs2
+			cur = Vector2i(int(round(v2.x)), int(round(v2.y)))
+
+		var dy: int = cur.y - _last_landed_screen.y
+		if dy < 0:
+			emit_signal("landed_up_screen")      # success (went up)
+		elif dy > 0:
+			emit_signal("landed_down_screen")    # fall (went down)
+
+		_last_landed_screen = cur
+	_was_on_floor = now_on_floor
 	
 	if is_instance_valid(recorder):
 		recorder.push_sample(

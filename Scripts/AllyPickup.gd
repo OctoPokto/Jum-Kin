@@ -40,3 +40,7 @@ func _on_body_entered(body: Node) -> void:
 	get_tree().current_scene.add_child(follower)
 	body.call("add_follower", follower)
 	queue_free()
+	
+	var dialogue := get_tree().current_scene.get_node("Control/Dialogue")
+	if dialogue:
+		dialogue.update_message(info.pickupDialogue, global_position)

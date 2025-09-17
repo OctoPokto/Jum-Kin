@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="FollowerInfo" load_steps=2 format=3 uid="uid://b6rlifss613yu"]
+[gd_resource type="Resource" script_class="FollowerInfo" load_steps=2 format=3 uid="uid://ckjk35r4lrm4"]
 
-[ext_resource type="Script" uid="uid://f2chjlerhve4" path="res://Resources/followerInfo.gd" id="1_0drt5"]
+[ext_resource type="Script" uid="uid://f2chjlerhve4" path="res://Resources/followerInfo.gd" id="1_k1n38"]
 
 [resource]
-script = ExtResource("1_0drt5")
+script = ExtResource("1_k1n38")
 characterName = "Belle"
 color = Color(0.694118, 0.243137, 0.32549, 1)
 pickupDialogue = "Hey can I follow you? We kin can help you open up doors."

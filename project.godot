@@ -13,7 +13,7 @@ config_version=5
 config/name="Jum Kin"
 config/description="Jum is Jumming their way through challenging obstacles to find their Kin."
 run/main_scene="res://Scenes/world.tscn"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/bg_color=Color(0.0156863, 0.0156863, 0.0156863, 1)
 config/icon="res://Sprites/icon.svg"
 
@@ -32,9 +32,9 @@ project/assembly_name="Jum Kin"
 
 [gui]
 
-theme/custom_font="res://Fonts/Jacquard12-128px.ttf"
 theme/default_font_antialiasing=0
 theme/default_font_multichannel_signed_distance_field=true
+theme/custom_font="res://Fonts/Jacquard12-128px.ttf"
 
 [input]
 
