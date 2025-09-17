@@ -31,11 +31,10 @@ func _on_body_entered(body: Node) -> void:
 		follower.delay_frames = delay_frames_base + idx * delay_frames_step
 
 	if info != null:
-		if follower.has_method("set_tint"):
-			follower.set_tint(info.color)
-		elif follower.has_node("AnimatedSprite2D"):
-			# fallback if not set_tint()
-			follower.get_node("AnimatedSprite2D").self_modulate = info.color
+		if follower.has_method("set_info"):
+			follower.set_info(info)
+		elif "info" in follower:
+			follower.info = info
 
 	get_tree().current_scene.add_child(follower)
 	body.call("add_follower", follower)

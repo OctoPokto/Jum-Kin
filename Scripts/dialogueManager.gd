@@ -11,7 +11,6 @@ func _ready() -> void:
 	
 func update_message(message: String, target: Vector2, color: Color)-> void:
 	
-	print("Entered update message")
 	var parent_ci := get_parent() as CanvasItem
 	var local_pos := target
 	if parent_ci:
@@ -20,7 +19,7 @@ func update_message(message: String, target: Vector2, color: Color)-> void:
 		print(local_pos)
 		
 	content.text = message
-	content.add_theme_color_override("default_col", color)
+	content.add_theme_color_override("default_color", color)
 	
 	position = (local_pos + Vector2(0,50))
 	await get_tree().create_timer(0.5).timeout
