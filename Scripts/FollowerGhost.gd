@@ -43,6 +43,9 @@ var _lock_right_x: float = 0.0
 var _lock_feet_y: float = 0.0
 var _has_lock: bool = false
 
+signal ready_for_dialogue
+var _dialogue_ready_prev: bool = false
+
 func set_info(i: FollowerInfo) -> void:
 	info = i
 	_apply_info()
@@ -149,6 +152,16 @@ func _physics_process(delta: float) -> void:
 			if snap.has("frame"):
 				sprite.set_frame(int(snap["frame"]))
 		sprite.flip_h = (vel.x < 0.0) if absf(vel.x) > 2.0 else face_left
+		
+	var floor_y := _lock_feet_y - feet_to_origin
+	var near_floor := absf(global_position.y - floor_y) < 1.5
+	var low_vy := absf(vel.y) < 2.0
+	var dialogue_ready := (not player_in_air) and _has_lock and near_floor and low_vy
+	
+	if dialogue_ready and not _dialogue_ready_prev:
+		ready_for_dialogue.emit()
+		
+	_dialogue_ready_prev = dialogue_ready
 
 	_init = true
 

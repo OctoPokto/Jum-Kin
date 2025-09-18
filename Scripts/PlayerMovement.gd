@@ -75,22 +75,40 @@ func _player_idle() -> void:
 
 func _player_fall() -> void:
 	if followers.is_empty(): return
-	var follower: FollowerGhost = followers[randi() % followers.size()]
-	var line := follower.info.dialogueFalling[randi() % follower.info.dialogueFalling.size()] if follower.info.dialogueFalling.size() > 0 else ""
-	if line != "":
-		if dialogue:
-			print(line)
-			dialogue.update_message(line, follower.global_position, follower.info.color)
+	var f: FollowerGhost = followers[randi() % followers.size()]
+	var line := ""
+	if f.info and f.info.dialogueFalling.size() > 0:
+		line = f.info.dialogueFalling[randi() % f.info.dialogueFalling.size()]
+	if line == "" or dialogue == null: return
+
+	var done := false
+	var cb = func(): done = true
+	f.ready_for_dialogue.connect(cb, CONNECT_ONE_SHOT)
+	var t := get_tree().create_timer(1.5)  
+	while not done and t.time_left > 0.0 and is_instance_valid(f):
+		await get_tree().physics_frame
+
+	if is_instance_valid(f):
+		dialogue.update_message(line, f.global_position, f.info.color)
+
 	
 func _player_ascend() -> void:
 	if followers.is_empty(): return
-	var follower: FollowerGhost = followers[randi() % followers.size()]
-	var line := follower.info.dialogueSuccess[randi() % follower.info.dialogueSuccess.size()] if follower.info.dialogueSuccess.size() > 0 else ""
-	if line != "":
-		if dialogue:
-			print(line)
-			dialogue.update_message(line, follower.global_position, follower.info.color)
+	var f: FollowerGhost = followers[randi() % followers.size()]
+	var line := ""
+	if f.info and f.info.dialogueSuccess.size() > 0:
+		line = f.info.dialogueSuccess[randi() % f.info.dialogueSuccess.size()]
+	if line == "" or dialogue == null: return
 
+	var done := false
+	var cb = func(): done = true
+	f.ready_for_dialogue.connect(cb, CONNECT_ONE_SHOT)
+	var t := get_tree().create_timer(1.5)
+	while not done and t.time_left > 0.0 and is_instance_valid(f):
+		await get_tree().physics_frame
+
+	if is_instance_valid(f):
+		dialogue.update_message(line, f.global_position, f.info.color)
 
 func add_follower(f) -> void:
 	followers.append(f)
