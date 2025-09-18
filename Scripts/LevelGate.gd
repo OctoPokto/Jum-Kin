@@ -1,6 +1,7 @@
 extends Area2D
 class_name LevelGate
 
+var loader_scene: PackedScene = preload("res://Scenes/LoadingScreen.tscn")
 @export var next_scene: PackedScene
 @export var auto_count_pickups: bool = true
 @export var required_followers: int = 0
@@ -70,7 +71,18 @@ func _on_body_entered(body: Node) -> void:
 		blocker.disabled = true
 
 	if open_on_touch and next_scene:
-		get_tree().change_scene_to_packed(next_scene)
+		if loader_scene:
+			var loader := loader_scene.instantiate() as LoadingScreen
+			loader.set_next_scene(next_scene)
+
+			var old_scene := get_tree().current_scene
+			get_tree().root.add_child(loader)
+			get_tree().current_scene = loader
+			if old_scene:
+				old_scene.queue_free()
+		else:
+			get_tree().change_scene_to_packed(next_scene)
+
 
 func _on_body_exited(_body: Node) -> void:
 	_update_label()
