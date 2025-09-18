@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://oo1ssj6hendl" path="res://Scenes/Dialogue.tscn" id="9_5v1tr"]
 [ext_resource type="Resource" uid="uid://rh48437ts2tb" path="res://Resources/Follower2.tres" id="9_c5t2i"]
 [ext_resource type="Resource" uid="uid://1k5udvn41xdi" path="res://Resources/Follower3.tres" id="10_e0ngr"]
+[ext_resource type="PackedScene" uid="uid://d3qftw0g88q3n" path="res://Scenes/LevelGate.tscn" id="12_c5t2i"]
 [ext_resource type="PackedScene" uid="uid://b5jl1b1n0653b" path="res://Scenes/World2.tscn" id="12_hgpy0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k7acu"]
@@ -500,4 +501,8 @@ info = ExtResource("10_e0ngr")
 offset_left = 1.0
 offset_right = 1.0
 
-
+[node name="LevelGate" parent="." instance=ExtResource("12_c5t2i")]
+position = Vector2(-96, -2784)
+next_scene = ExtResource("12_hgpy0")
+auto_count_pickups = false
+required_followers = 3
