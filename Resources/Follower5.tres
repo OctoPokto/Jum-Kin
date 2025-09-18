@@ -6,7 +6,7 @@
 script = ExtResource("1_knxwg")
 characterName = "Birgitte"
 color = Color(0.254902, 0.65098, 0.964706, 1)
-pickupDialogue = ""
+pickupDialogue = "JUM! My favourite Kin. Thank you for comin_ to _et me"
 dialogue = PackedStringArray("Remember to breathe!", "Unclench your jaw", "You can do this")
 dialogueSuccess = PackedStringArray("You _ersevered and did it!", "_reat jum_!", "Doin_  your best really _ays off")
 dialogueFalling = PackedStringArray("You held your breath didn\'t you", "You really should learn to unwind a bit", "There really should be some _uardrails here")

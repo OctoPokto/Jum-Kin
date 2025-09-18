@@ -6,7 +6,7 @@
 script = ExtResource("1_3xa3a")
 characterName = "Gregory"
 color = Color(0.219608, 0.717647, 0.392157, 1)
-pickupDialogue = ""
+pickupDialogue = "Your soul s_eaks to me"
 dialogue = PackedStringArray("When you have three, you have three", "When you have two, you have two", "When you have one, you have none")
 dialogueSuccess = PackedStringArray("Have you succeeded?", "The water _limmers", "Do you not see what is before you?", "A false idol to a future unknown")
 dialogueFalling = PackedStringArray("Are you enou_h?", "To what end are you achievin_?", "_rounded at last")

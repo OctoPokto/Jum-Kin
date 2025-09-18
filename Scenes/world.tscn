@@ -456,6 +456,7 @@ sources/1 = SubResource("TileSetAtlasSource_5v1tr")
 [node name="Player" parent="." instance=ExtResource("2_oshdv")]
 position = Vector2(0, 212)
 scale = Vector2(1.5, 1.5)
+cam_node = NodePath("../CameraMover")
 
 [node name="Walls" type="TileMapLayer" parent="."]
 use_parent_material = true
