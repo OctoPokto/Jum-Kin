@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://b5jl1b1n0653b"]
+[gd_scene load_steps=10 format=4 uid="uid://b5jl1b1n0653b"]
 
 [ext_resource type="PackedScene" uid="uid://sd0c2wahutxb" path="res://Scenes/Player.tscn" id="1_qvspi"]
 [ext_resource type="Texture2D" uid="uid://c2tyvojin0ijg" path="res://Sprites/Walls.png" id="2_vjdei"]
 [ext_resource type="Script" uid="uid://13wp8p82hy57" path="res://Scripts/CamProgression.gd" id="3_8nxx6"]
 [ext_resource type="Texture2D" uid="uid://dtfns7yrcikjj" path="res://Sprites/icon.svg" id="3_vjdei"]
 [ext_resource type="PackedScene" uid="uid://d3qftw0g88q3n" path="res://Scenes/LevelGate.tscn" id="5_4suu4"]
-[ext_resource type="PackedScene" uid="uid://bh7nekua4p7v3" path="res://Scenes/world.tscn" id="6_jjfra"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4suu4"]
 texture = ExtResource("2_vjdei")
@@ -432,5 +431,4 @@ script = ExtResource("3_8nxx6")
 
 [node name="LevelGate" parent="." instance=ExtResource("5_4suu4")]
 position = Vector2(0, -255)
-next_scene = ExtResource("6_jjfra")
 required_followers = 2
