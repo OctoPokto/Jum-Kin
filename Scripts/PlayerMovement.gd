@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var line = $Line2D
+@onready var line2d = $Line2D
 @onready var animated_sprite_2d = $AnimatedSprite2D
 var current_animation = "idle"
 
@@ -36,9 +36,28 @@ var _last_landed_screen: Vector2i = Vector2i.ZERO
 @export var cam_node: NodePath
 var _cam: Node = null
 
+signal idle_timeout
+var idle_actions: PackedStringArray = [
+	"A_left","D_right","W_up","S_down","ui_select"]
+	
+@export var idle_timeout_sec: float = 8.0
+var _idle_elapsed: float = 0.0
+var _idle_fired: bool = false
+
+var dialogue
+
+func _any_idle_action_pressed() -> bool:
+	for a in idle_actions:
+		if Input.is_action_pressed(a):
+			return true
+	return false
+
 func _ready():
-	landed_up_screen.connect(_on_test_up)
-	landed_down_screen.connect(_on_test_down)
+	dialogue = get_tree().current_scene.get_node("Control/Dialogue")
+	
+	idle_timeout.connect(_player_idle)
+	landed_up_screen.connect(_player_ascend)
+	landed_down_screen.connect(_player_fall)
 	_was_on_floor = is_on_floor()
 	_cam = get_node_or_null(cam_node)
 	if _cam and _cam.has_method("_getCurrentScreen"):
@@ -46,17 +65,31 @@ func _ready():
 		var v: Vector2 = cs
 		_last_landed_screen = Vector2i(int(round(v.x)), int(round(v.y)))
 
-func _on_test_up() -> void:
-	var scr := ""
-	if _cam and _cam.has_method("_getCurrentScreen"):
-		scr = str(_cam.call("_getCurrentScreen"))
-	print("[TEST] landed_up_screen  screen=", scr)
+func _player_idle() -> void:
+	if followers.is_empty(): return
+	var follower: FollowerGhost = followers[randi() % followers.size()]
+	var line := follower.info.dialogue[randi() % follower.info.dialogue.size()] if follower.info.dialogue.size() > 0 else ""
+	if line != "":
+		if dialogue:
+			dialogue.update_message(line, follower.global_position, follower.info.color)
 
-func _on_test_down() -> void:
-	var scr := ""
-	if _cam and _cam.has_method("_getCurrentScreen"):
-		scr = str(_cam.call("_getCurrentScreen"))
-	print("[TEST] landed_down_screen  screen=", scr)
+func _player_fall() -> void:
+	if followers.is_empty(): return
+	var follower: FollowerGhost = followers[randi() % followers.size()]
+	var line := follower.info.dialogueFalling[randi() % follower.info.dialogueFalling.size()] if follower.info.dialogueFalling.size() > 0 else ""
+	if line != "":
+		if dialogue:
+			print(line)
+			dialogue.update_message(line, follower.global_position, follower.info.color)
+	
+func _player_ascend() -> void:
+	if followers.is_empty(): return
+	var follower: FollowerGhost = followers[randi() % followers.size()]
+	var line := follower.info.dialogueSuccess[randi() % follower.info.dialogueSuccess.size()] if follower.info.dialogueSuccess.size() > 0 else ""
+	if line != "":
+		if dialogue:
+			print(line)
+			dialogue.update_message(line, follower.global_position, follower.info.color)
 
 
 func add_follower(f) -> void:
@@ -113,6 +146,20 @@ func _physics_process(delta): #Delta is the time between physics ticks. Currentl
 			animated_sprite_2d.animation,
 			animated_sprite_2d.get_frame()
 		)
+		
+	if is_on_floor():
+		if _any_idle_action_pressed():
+			_idle_elapsed = 0.0
+			_idle_fired = false
+		else:
+			_idle_elapsed += delta
+			if not _idle_fired and _idle_elapsed >= idle_timeout_sec:
+				_idle_fired = true
+				emit_signal("idle_timeout")
+	else:
+		# reset while airborne so a new idle can trigger after landing
+		_idle_elapsed = 0.0
+		_idle_fired = false
 	
 
 func _handle_jump(input_direction, delta):
@@ -200,11 +247,11 @@ func handle_animations():
 func update_trajectory(dir:Vector2, speed:float, delta):
 	var max_points = 64
 
-	line.clear_points()
+	line2d.clear_points()
 	var pos: Vector2 = Vector2.ZERO
 	var vel = dir * speed
 	for i in max_points:
-		line.add_point(pos)
+		line2d.add_point(pos)
 		vel.y += gravity * delta
 		pos += vel * delta
 		
