@@ -15,7 +15,7 @@ texture = ExtResource("2_gmdkk")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 region_rect = Rect2(32, 0, 32, 32)
-modulate_color = Color(0.14509805, 0.44313726, 0.4745098, 1)
+modulate_color = Color(0.69411767, 0.24313726, 0.3254902, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbxmk"]
 
@@ -33,7 +33,7 @@ Button/icons/icon = SubResource("AtlasTexture_gmdkk")
 Button/styles/hover_pressed = SubResource("StyleBoxEmpty_1n8dl")
 Panel/styles/panel = SubResource("StyleBoxTexture_1n8dl")
 RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
-RichTextLabel/colors/font_shadow_color = Color(0.3647059, 0.15294118, 0.3647059, 1)
+RichTextLabel/colors/font_shadow_color = Color(0.9372549, 0.49019608, 0.34117648, 1)
 RichTextLabel/constants/shadow_offset_x = -3
 RichTextLabel/constants/shadow_offset_y = 3
 RichTextLabel/font_sizes/normal_font_size = 100

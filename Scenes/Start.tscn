@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://ldt5beql1k5a"]
+[gd_scene load_steps=3 format=3 uid="uid://ldt5beql1k5a"]
 
 [ext_resource type="Theme" uid="uid://c8jrk7j3ut6cm" path="res://menu_theme.tres" id="1_og4jd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_og4jd"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.9372549, 0.49019608, 0.34117648, 1)
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -11,13 +20,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_og4jd")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_og4jd")
+
+[node name="Panel" type="Panel" parent="PanelContainer"]
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
