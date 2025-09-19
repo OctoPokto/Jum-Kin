@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ldt5beql1k5a"]
+[gd_scene load_steps=4 format=3 uid="uid://ldt5beql1k5a"]
 
 [ext_resource type="Theme" uid="uid://c8jrk7j3ut6cm" path="res://menu_theme.tres" id="1_og4jd"]
+[ext_resource type="Script" uid="uid://bqel4404k5k33" path="res://Scripts/menu.gd" id="2_nt0jr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_og4jd"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -19,6 +20,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_og4jd")
+script = ExtResource("2_nt0jr")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -57,3 +59,10 @@ vertical_alignment = 1
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Embark"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Tarnish thine re_utation"
+
+[connection signal="button_up" from="MarginContainer/VBoxContainer/Button" to="." method="_toggle_visibility"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/Button2" to="." method="_exit_game"]
