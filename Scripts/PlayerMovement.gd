@@ -53,7 +53,7 @@ func _any_idle_action_pressed() -> bool:
 	return false
 
 func _ready():
-	dialogue = get_tree().current_scene.get_node("Control/Dialogue")
+	dialogue = get_tree().current_scene.get_node("UI/UIRoot/Dialogue")
 	
 	idle_timeout.connect(_player_idle)
 	landed_up_screen.connect(_player_ascend)
@@ -89,6 +89,7 @@ func _player_fall() -> void:
 		await get_tree().physics_frame
 
 	if is_instance_valid(f):
+		print(line)
 		dialogue.update_message(line, f.global_position, f.info.color)
 
 	
@@ -108,6 +109,7 @@ func _player_ascend() -> void:
 		await get_tree().physics_frame
 
 	if is_instance_valid(f):
+		print(line)
 		dialogue.update_message(line, f.global_position, f.info.color)
 
 func add_follower(f) -> void:

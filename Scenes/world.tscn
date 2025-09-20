@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=4 uid="uid://bh7nekua4p7v3"]
 
-[ext_resource type="PackedScene" uid="uid://ldt5beql1k5a" path="res://Scenes/Start.tscn" id="2_kn0ld"]
+[ext_resource type="PackedScene" path="res://Scenes/Start.tscn" id="2_kn0ld"]
 [ext_resource type="PackedScene" uid="uid://sd0c2wahutxb" path="res://Scenes/Player.tscn" id="2_oshdv"]
 [ext_resource type="Texture2D" uid="uid://c2tyvojin0ijg" path="res://Sprites/Walls.png" id="3_mnjr6"]
 [ext_resource type="Texture2D" uid="uid://w1ge27s7cavf" path="res://Sprites/AccentTiles.png" id="4_4rkq8"]
@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://oo1ssj6hendl" path="res://Scenes/Dialogue.tscn" id="9_5v1tr"]
 [ext_resource type="Resource" uid="uid://rh48437ts2tb" path="res://Resources/Follower2.tres" id="9_c5t2i"]
 [ext_resource type="Resource" uid="uid://1k5udvn41xdi" path="res://Resources/Follower3.tres" id="10_e0ngr"]
-[ext_resource type="PackedScene" uid="uid://d3qftw0g88q3n" path="res://Scenes/LevelGate.tscn" id="12_c5t2i"]
+[ext_resource type="PackedScene" uid="uid://dbveg8ko3gmlt" path="res://Scenes/LevelGate.tscn" id="12_c5t2i"]
 [ext_resource type="PackedScene" uid="uid://b5jl1b1n0653b" path="res://Scenes/World2.tscn" id="12_hgpy0"]
 [ext_resource type="PackedScene" uid="uid://c2kuiq6oxgcye" path="res://Scenes/Pause.tscn" id="14_e0ngr"]
 
@@ -506,11 +506,9 @@ next_scene = ExtResource("12_hgpy0")
 auto_count_pickups = false
 required_followers = 3
 
-[node name="Dialogue" parent="." instance=ExtResource("9_5v1tr")]
-offset_left = 1.0
-offset_right = 1.0
-
 [node name="PauseMenu" parent="." instance=ExtResource("14_e0ngr")]
 visible = false
 
 [node name="StartMenu" parent="." instance=ExtResource("2_kn0ld")]
+
+[node name="UI" parent="." instance=ExtResource("9_5v1tr")]
