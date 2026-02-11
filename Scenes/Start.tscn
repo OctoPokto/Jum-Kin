@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ldt5beql1k5a"]
+[gd_scene format=3 uid="uid://ldt5beql1k5a"]
 
 [ext_resource type="Theme" uid="uid://c8jrk7j3ut6cm" path="res://menu_theme.tres" id="1_og4jd"]
 [ext_resource type="Script" uid="uid://bqel4404k5k33" path="res://Scripts/menu.gd" id="2_nt0jr"]
@@ -12,7 +12,7 @@ border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.9372549, 0.49019608, 0.34117648, 1)
 
-[node name="StartMenu" type="Control"]
+[node name="StartMenu" type="Control" unique_id=2009237092]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +22,7 @@ grow_vertical = 2
 theme = ExtResource("1_og4jd")
 script = ExtResource("2_nt0jr")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=893413180]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,15 +30,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1466154644]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_og4jd")
 
-[node name="Panel" type="Panel" parent="MarginContainer/PanelContainer"]
+[node name="Panel" type="Panel" parent="MarginContainer/PanelContainer" unique_id=497515106]
 custom_minimum_size = Vector2(640, 480)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/Panel" unique_id=1064310040]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -55,7 +55,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer/Panel/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer/Panel/VBoxContainer" unique_id=1856653485]
 layout_mode = 2
 bbcode_enabled = true
 text = "Jum_ Kin_"
@@ -63,11 +63,11 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="MarginContainer/PanelContainer/Panel/VBoxContainer"]
+[node name="Button" type="Button" parent="MarginContainer/PanelContainer/Panel/VBoxContainer" unique_id=1096956755]
 layout_mode = 2
 text = "Embark"
 
-[node name="Button2" type="Button" parent="MarginContainer/PanelContainer/Panel/VBoxContainer"]
+[node name="Button2" type="Button" parent="MarginContainer/PanelContainer/Panel/VBoxContainer" unique_id=290320554]
 layout_mode = 2
 text = "Tarnish thine re_utation"
 

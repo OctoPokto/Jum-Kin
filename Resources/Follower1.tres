@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FollowerInfo" load_steps=2 format=3 uid="uid://ckjk35r4lrm4"]
+[gd_resource type="Resource" script_class="FollowerInfo" format=3 uid="uid://ckjk35r4lrm4"]
 
 [ext_resource type="Script" uid="uid://f2chjlerhve4" path="res://Resources/followerInfo.gd" id="1_k1n38"]
 
