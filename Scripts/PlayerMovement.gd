@@ -235,7 +235,7 @@ func _handle_look_direction(input_direction):
 		angle = wrapi(int(angle),0,8)
 		animated_sprite_2d.set_frame(angle)
 
-func collide_on_wall():
+func collide_on_wall(): #Reverses the direction when colliding with a wall, preserving momentum
 	if velocity.x !=0:
 		velocity_before_bounce = velocity.x
 		if velocity_before_bounce == null:
@@ -263,18 +263,7 @@ func handle_animations():
 	else:
 		animated_sprite_2d.play("idle")
 	
-
-func update_trajectory(dir:Vector2, speed:float, delta):
-	var max_points = 64
-
-	line2d.clear_points()
-	var pos: Vector2 = Vector2.ZERO
-	var vel = dir * speed
-	for i in max_points:
-		line2d.add_point(pos)
-		vel.y += gravity * delta
-		pos += vel * delta
-		
+	
 func time_input_held(): 
 	if Input.is_action_pressed("A_left"):
 		prior_input[0] = time_passed
